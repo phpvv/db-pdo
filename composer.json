@@ -1,0 +1,25 @@
+{
+    "name": "phpvv/db-pdo",
+    "description": "VV DB PDO",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Volodymyr Sarnytskyi",
+            "email": "v00v4n@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "VV\\Db\\Pdo\\": "Pdo"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "ext-pdo": "*",
+        "phpvv/db": "dev-master"
+    },
+    "require-dev": {
+        "jetbrains/phpstorm-attributes": "^1.0"
+    }
+}
