@@ -1,6 +1,6 @@
 {
     "name": "phpvv/db-pdo",
-    "description": "VV DB PDO",
+    "description": "VV DB Driver over Oci extension",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "VV\\Db\\Pdo\\": "Pdo"
+            "VV\\Db\\Pdo\\": "src"
         }
     },
     "require": {
