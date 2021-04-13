@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7a0eee10669184ee25d44792cad454e",
+    "content-hash": "f15d0b0935a7e6b3b6d16cb70c84e1de",
     "packages": [
         {
             "name": "phpvv/db",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpvv/db.git",
-                "reference": "a9723a241277f121a1e5f52c60e186ed9bb3892d"
+                "reference": "ee0a75dce26b2919e408d994be7c92a154aa35f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpvv/db/zipball/a9723a241277f121a1e5f52c60e186ed9bb3892d",
-                "reference": "a9723a241277f121a1e5f52c60e186ed9bb3892d",
+                "url": "https://api.github.com/repos/phpvv/db/zipball/ee0a75dce26b2919e408d994be7c92a154aa35f6",
+                "reference": "ee0a75dce26b2919e408d994be7c92a154aa35f6",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
                 "issues": "https://github.com/phpvv/db/issues",
                 "source": "https://github.com/phpvv/db/tree/master"
             },
-            "time": "2021-03-29T19:52:23+00:00"
+            "time": "2021-04-06T19:15:18+00:00"
         },
         {
             "name": "phpvv/exception",
@@ -202,7 +202,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "ext-pdo": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
