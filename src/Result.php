@@ -18,9 +18,9 @@ namespace VV\Db\Pdo;
 class Result implements \VV\Db\Driver\Result {
 
     private \PDOStatement $stmt;
-    private mixed $insertedId;
+    private int|string|null $insertedId;
 
-    public function __construct($stmt, $insertedId) {
+    public function __construct(\PDOStatement $stmt, int|string|null $insertedId) {
         $this->stmt = $stmt;
         $this->insertedId = $insertedId;
     }
@@ -43,7 +43,7 @@ class Result implements \VV\Db\Driver\Result {
     /**
      * @inheritdoc
      */
-    public function insertedId() {
+    public function insertedId(): int|string|null {
         return $this->insertedId;
     }
 

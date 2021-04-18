@@ -22,7 +22,7 @@ class Connection implements \VV\Db\Driver\Connection {
     /**
      * Connection constructor.
      *
-     * @param $pdo
+     * @param \PDO $pdo
      */
     public function __construct(\PDO $pdo) {
         $this->pdo = $pdo;

@@ -99,7 +99,13 @@ class Statement implements \VV\Db\Driver\Statement {
         }
     }
 
-    private function toPdoType($value, $paramType = null): int {
+    /**
+     * @param mixed $value
+     *
+     * @return int
+     */
+    private function toPdoType(mixed $value): int {
+        $paramType = null;
         if ($value instanceof Param) {
             $paramType = $value->type();
             $value = $value->value();
