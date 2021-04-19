@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f15d0b0935a7e6b3b6d16cb70c84e1de",
+    "content-hash": "559fb7da601014a6456c8a36aced5e3b",
     "packages": [
         {
             "name": "phpvv/db",
-            "version": "dev-master",
+            "version": "0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpvv/db.git",
-                "reference": "2bd43c5ad6e7fe7f58b7bba5f762a78a58129c0f"
+                "reference": "3be02e92e3a3caf7118925fa5f7af665f4a4b166"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpvv/db/zipball/2bd43c5ad6e7fe7f58b7bba5f762a78a58129c0f",
-                "reference": "2bd43c5ad6e7fe7f58b7bba5f762a78a58129c0f",
+                "url": "https://api.github.com/repos/phpvv/db/zipball/3be02e92e3a3caf7118925fa5f7af665f4a4b166",
+                "reference": "3be02e92e3a3caf7118925fa5f7af665f4a4b166",
                 "shasum": ""
             },
             "require": {
@@ -28,7 +28,6 @@
             "require-dev": {
                 "jetbrains/phpstorm-attributes": "^1.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -49,11 +48,26 @@
                 }
             ],
             "description": "VV database abstraction layer with query builder and DB structure models",
+            "keywords": [
+                "Abstraction Layer",
+                "database",
+                "db",
+                "dbal",
+                "mysql",
+                "mysqli",
+                "oci8",
+                "oracle",
+                "pdo",
+                "postgres",
+                "postgresql",
+                "query builder",
+                "sql"
+            ],
             "support": {
                 "issues": "https://github.com/phpvv/db/issues",
-                "source": "https://github.com/phpvv/db/tree/master"
+                "source": "https://github.com/phpvv/db/tree/0.1"
             },
-            "time": "2021-04-13T20:22:00+00:00"
+            "time": "2021-04-18T17:34:30+00:00"
         },
         {
             "name": "phpvv/exception",
@@ -196,9 +210,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "phpvv/db": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
