@@ -43,7 +43,12 @@ class Driver implements \VV\Db\Driver\Driver {
      * @inheritDoc
      */
     public function connect(string $host, string $user, string $passwd, ?string $scheme, ?string $charset): Connection {
-        $dsn = "$this->dsnPrefix:host=$host;dbname=$scheme";
+        $port = 5432;
+        if (preg_match('/^(.+):(\d+)$/', $host, $m)) {
+            [, $host, $port] = $m;
+        }
+
+        $dsn = "$this->dsnPrefix:host=$host;port=$port;dbname=$scheme";
         try {
             $pdo = new \PDO($dsn, $user, $passwd);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
