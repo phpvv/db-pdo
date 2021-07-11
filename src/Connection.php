@@ -43,7 +43,7 @@ class Connection implements \VV\Db\Driver\Connection
             throw new SqlSyntaxError(null, null, $e);
         }
 
-        return new Statement($stmt, $query);
+        return new Statement($stmt);
     }
 
     /**

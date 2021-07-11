@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpvv/db.git",
-                "reference": "7487b268cf686df02a801fb5fdbbcfc2836d7c28"
+                "reference": "2e643a8479fbe0626ab02da5b6b6c8efacf772eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpvv/db/zipball/7487b268cf686df02a801fb5fdbbcfc2836d7c28",
-                "reference": "7487b268cf686df02a801fb5fdbbcfc2836d7c28",
+                "url": "https://api.github.com/repos/phpvv/db/zipball/2e643a8479fbe0626ab02da5b6b6c8efacf772eb",
+                "reference": "2e643a8479fbe0626ab02da5b6b6c8efacf772eb",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,7 @@
                 "phpvv/runtime": "^0.2.0"
             },
             "require-dev": {
-                "jetbrains/phpstorm-attributes": "^1.0"
+                "squizlabs/php_codesniffer": "^3.6"
             },
             "default-branch": true,
             "type": "library",
@@ -68,7 +68,7 @@
                 "issues": "https://github.com/phpvv/db/issues",
                 "source": "https://github.com/phpvv/db/tree/master"
             },
-            "time": "2021-07-11T12:34:24+00:00"
+            "time": "2021-07-11T13:47:10+00:00"
         },
         {
             "name": "phpvv/exception",

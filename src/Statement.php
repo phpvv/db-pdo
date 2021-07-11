@@ -11,7 +11,10 @@
 namespace VV\Db\Pdo;
 
 use VV\Db\Driver\QueryInfo;
+use VV\Db\Exceptions\ConnectionError;
+use VV\Db\Exceptions\SqlExecutionError;
 use VV\Db\Param;
+use VV\Exception\Core;
 
 /**
  * Class Statement
@@ -22,12 +25,10 @@ class Statement implements \VV\Db\Driver\Statement
 {
     private ?\PDOStatement $stmt;
     private bool $hasInsertedId = false;
-    private QueryInfo $query;
 
-    public function __construct(\PDOStatement $stmt, QueryInfo $query)
+    public function __construct(\PDOStatement $stmt)
     {
         $this->stmt = $stmt;
-        $this->query = $query;
     }
 
     public function bind(array $params): void
@@ -67,7 +68,12 @@ class Statement implements \VV\Db\Driver\Statement
         try {
             $this->stmt->execute();
         } catch (\PDOException $e) {
-            throw new \VV\Db\Exceptions\SqlExecutionError(null, null, $e);
+            static $reconnectCodes = ['HY000', '57P01', '57P02', '57P03'];
+            if (in_array($e->getCode(), $reconnectCodes)) {
+                throw new ConnectionError();
+            }
+
+            throw new SqlExecutionError(null, null, $e);
         }
 
         $insertedId = $this->hasInsertedId ? $this->stmt->fetch()['_insertedid'] : null;
