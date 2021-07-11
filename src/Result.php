@@ -10,27 +10,32 @@
  */
 namespace VV\Db\Pdo;
 
+use VV\Db;
+use VV\Db\Driver\Result as ResultInterface;
+
 /**
  * Class Result
  *
  * @package VV\Db\Pdo
  */
-class Result implements \VV\Db\Driver\Result {
-
+class Result implements ResultInterface
+{
     private \PDOStatement $stmt;
     private int|string|null $insertedId;
 
-    public function __construct(\PDOStatement $stmt, int|string|null $insertedId) {
+    public function __construct(\PDOStatement $stmt, int|string|null $insertedId)
+    {
         $this->stmt = $stmt;
         $this->insertedId = $insertedId;
     }
 
-    public function fetchIterator(int $flags): \Traversable {
+    public function getIterator(int $flags): \Traversable
+    {
         $pdoFlags = 0;
-        if ($fassoc = (bool)($flags & \VV\Db::FETCH_ASSOC)) {
+        if ($fassoc = (bool)($flags & Db::FETCH_ASSOC)) {
             $pdoFlags = \PDO::FETCH_ASSOC;
         }
-        if ($flags & \VV\Db::FETCH_NUM) {
+        if ($flags & Db::FETCH_NUM) {
             $pdoFlags = $fassoc ? \PDO::FETCH_BOTH : \PDO::FETCH_NUM;
         }
 
@@ -43,16 +48,20 @@ class Result implements \VV\Db\Driver\Result {
     /**
      * @inheritdoc
      */
-    public function insertedId(): int|string|null {
+    public function getInsertedId(): int|string|null
+    {
         return $this->insertedId;
     }
 
-    public function affectedRows(): int {
+    public function getAffectedRows(): int
+    {
         return $this->stmt->rowCount();
     }
 
     /**
      * Closes statement
      */
-    public function close(): void { }
+    public function close(): void
+    {
+    }
 }

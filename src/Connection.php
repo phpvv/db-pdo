@@ -10,13 +10,16 @@
  */
 namespace VV\Db\Pdo;
 
+use VV\Db\Driver\QueryInfo;
+use VV\Db\Exceptions\SqlSyntaxError;
+
 /**
  * Class Connection
  *
  * @package VV\Db\Pdo
  */
-class Connection implements \VV\Db\Driver\Connection {
-
+class Connection implements \VV\Db\Driver\Connection
+{
     private ?\PDO $pdo;
 
     /**
@@ -24,18 +27,20 @@ class Connection implements \VV\Db\Driver\Connection {
      *
      * @param \PDO $pdo
      */
-    public function __construct(\PDO $pdo) {
+    public function __construct(\PDO $pdo)
+    {
         $this->pdo = $pdo;
     }
 
     /**
      * @inheritdoc
      */
-    public function prepare(\VV\Db\Driver\QueryInfo $query): \VV\Db\Driver\Statement {
+    public function prepare(QueryInfo $query): \VV\Db\Driver\Statement
+    {
         try {
-            $stmt = $this->pdo->prepare($query->string());
+            $stmt = $this->pdo->prepare($query->getString());
         } catch (\PDOException $e) {
-            throw new \VV\Db\Exceptions\SqlSyntaxError(null, null, $e);
+            throw new SqlSyntaxError(null, null, $e);
         }
 
         return new Statement($stmt, $query);
@@ -44,29 +49,35 @@ class Connection implements \VV\Db\Driver\Connection {
     /**
      * @inheritDoc
      */
-    public function startTransaction(): void {
+    public function startTransaction(): void
+    {
         $this->pdo->beginTransaction();
     }
 
     /**
      * @inheritdoc
      */
-    public function commit(bool $autocommit = false): void {
-        if ($autocommit) return;
+    public function commit(bool $autocommit = false): void
+    {
+        if ($autocommit) {
+            return;
+        }
         $this->pdo->commit();
     }
 
     /**
      * @inheritdoc
      */
-    public function rollback(): void {
+    public function rollback(): void
+    {
         $this->pdo->rollBack();
     }
 
     /**
      * @inheritdoc
      */
-    public function disconnect(): void {
+    public function disconnect(): void
+    {
         $this->pdo = null;
     }
 }

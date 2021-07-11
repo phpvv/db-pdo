@@ -10,6 +10,7 @@
  */
 namespace VV\Db\Pdo;
 
+use VV\Db\Driver\QueryInfo;
 use VV\Db\Param;
 
 /**
@@ -17,37 +18,41 @@ use VV\Db\Param;
  *
  * @package VV\Db\Pdo
  */
-class Statement implements \VV\Db\Driver\Statement {
-
+class Statement implements \VV\Db\Driver\Statement
+{
     private ?\PDOStatement $stmt;
     private bool $hasInsertedId = false;
-    private \VV\Db\Driver\QueryInfo $query;
+    private QueryInfo $query;
 
-    public function __construct(\PDOStatement $stmt, \VV\Db\Driver\QueryInfo $query) {
+    public function __construct(\PDOStatement $stmt, QueryInfo $query)
+    {
         $this->stmt = $stmt;
         $this->query = $query;
     }
 
-    public function bind(array $params): void {
-        if (!$params) return;
+    public function bind(array $params): void
+    {
+        if (!$params) {
+            return;
+        }
 
         $i = 0;
         foreach ($params as $k => &$param) {
-            if ($param instanceof \VV\Db\Param && $param->isForInsertedId()) {
+            if ($param instanceof Param && $param->isForInsertedId()) {
                 $this->hasInsertedId = true;
                 continue;
             }
 
             if (is_string($k)) {
                 $name = ":$k";
-            } elseif ($param instanceof Param && ($n = $param->name())) {
+            } elseif ($param instanceof Param && ($n = $param->getName())) {
                 $name = ":$n";
             } else {
                 $name = ':p' . ++$i;
             }
 
             if ($param instanceof Param) {
-                $this->pdoBindParam($name, $param->value(), $this->toPdoType($param), $param->size() ?: 0);
+                $this->pdoBindParam($name, $param->getValue(), $this->toPdoType($param), $param->getSize() ?: 0);
                 $param->setBinded();
             } else {
                 $this->pdoBindParam($name, $param, $this->toPdoType($param));
@@ -56,7 +61,8 @@ class Statement implements \VV\Db\Driver\Statement {
         unset($param);
     }
 
-    public function exec(): \VV\Db\Driver\Result {
+    public function exec(): \VV\Db\Driver\Result
+    {
         // execute query
         try {
             $this->stmt->execute();
@@ -72,18 +78,21 @@ class Statement implements \VV\Db\Driver\Statement {
     /**
      * @inheritDoc
      */
-    public function setFetchSize(int $size): void {
+    public function setFetchSize(int $size): void
+    {
         $this->stmt->setAttribute(\PDO::ATTR_PREFETCH, $size);
     }
 
     /**
      * @inheritDoc
      */
-    public function close(): void {
+    public function close(): void
+    {
         $this->stmt = null;
     }
 
-    private function pdoBindParam($name, &$value, int $type, int $size = 0) {
+    private function pdoBindParam($name, &$value, int $type, int $size = 0)
+    {
         if ($value instanceof \Generator) {
             $strvalue = '';
             foreach ($value as $s) {
@@ -104,11 +113,12 @@ class Statement implements \VV\Db\Driver\Statement {
      *
      * @return int
      */
-    private function toPdoType(mixed $value): int {
+    private function toPdoType(mixed $value): int
+    {
         $paramType = null;
         if ($value instanceof Param) {
-            $paramType = $value->type();
-            $value = $value->value();
+            $paramType = $value->getType();
+            $value = $value->getValue();
         }
 
         if ($paramType) {
@@ -129,7 +139,9 @@ class Statement implements \VV\Db\Driver\Statement {
             }
         }
 
-        if (is_int($value)) return \PDO::PARAM_INT;
+        if (is_int($value)) {
+            return \PDO::PARAM_INT;
+        }
 
         return \PDO::PARAM_STR;
     }

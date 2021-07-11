@@ -17,8 +17,8 @@ use VV\Db\Exceptions\ConnectionError;
  *
  * @package VV\Db\Pdo
  */
-class Driver implements \VV\Db\Driver\Driver {
-
+class Driver implements \VV\Db\Driver\Driver
+{
     private string $dsnPrefix;
     private string $dbms;
 
@@ -28,7 +28,8 @@ class Driver implements \VV\Db\Driver\Driver {
      * @param string      $dbms
      * @param string|null $dsnPrefix
      */
-    public function __construct(string $dbms, string $dsnPrefix = null) {
+    public function __construct(string $dbms, string $dsnPrefix = null)
+    {
         $this->dbms = $dbms;
         $this->dsnPrefix = $dsnPrefix
             ?: match ($dbms) {
@@ -42,7 +43,8 @@ class Driver implements \VV\Db\Driver\Driver {
     /**
      * @inheritDoc
      */
-    public function connect(string $host, string $user, string $passwd, ?string $scheme, ?string $charset): Connection {
+    public function connect(string $host, string $user, string $passwd, ?string $scheme, ?string $charset): Connection
+    {
         $port = 5432;
         if (preg_match('/^(.+):(\d+)$/', $host, $m)) {
             [, $host, $port] = $m;
@@ -61,7 +63,8 @@ class Driver implements \VV\Db\Driver\Driver {
         return new Connection($pdo);
     }
 
-    public function sqlStringifiersFactory(): ?\VV\Db\Sql\Stringifiers\Factory {
+    public function getSqlStringifiersFactory(): ?\VV\Db\Sql\Stringifiers\Factory
+    {
         return null;
     }
 
@@ -69,9 +72,12 @@ class Driver implements \VV\Db\Driver\Driver {
     /**
      * @inheritDoc
      */
-    public function dbms(): string {
+    public function getDbmsName(): string
+    {
         return $this->dbms;
     }
 
-    protected function onPdoConnect(\PDO $pdo): void { }
+    protected function onPdoConnect(\PDO $pdo): void
+    {
+    }
 }
