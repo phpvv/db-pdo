@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "796afefb41c6903413090377acb93983",
+    "content-hash": "65a5b7170a092aa8c187b8a6b773a9f7",
     "packages": [
         {
             "name": "phpvv/db",
-            "version": "dev-master",
+            "version": "0.3.0-beta.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpvv/db.git",
-                "reference": "2e643a8479fbe0626ab02da5b6b6c8efacf772eb"
+                "reference": "52a50d2a42d2d28095c6548cf4fa9301c137c93d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpvv/db/zipball/2e643a8479fbe0626ab02da5b6b6c8efacf772eb",
-                "reference": "2e643a8479fbe0626ab02da5b6b6c8efacf772eb",
+                "url": "https://api.github.com/repos/phpvv/db/zipball/52a50d2a42d2d28095c6548cf4fa9301c137c93d",
+                "reference": "52a50d2a42d2d28095c6548cf4fa9301c137c93d",
                 "shasum": ""
             },
             "require": {
@@ -28,7 +28,6 @@
             "require-dev": {
                 "squizlabs/php_codesniffer": "^3.6"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -66,9 +65,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpvv/db/issues",
-                "source": "https://github.com/phpvv/db/tree/master"
+                "source": "https://github.com/phpvv/db/tree/0.3.0-beta.1"
             },
-            "time": "2021-07-11T13:47:10+00:00"
+            "time": "2021-07-19T20:08:47+00:00"
         },
         {
             "name": "phpvv/exception",
@@ -226,7 +225,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "phpvv/db": 20
+        "phpvv/db": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,
