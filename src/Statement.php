@@ -55,7 +55,7 @@ class Statement implements \VV\Db\Driver\Statement
 
             if ($param instanceof Param) {
                 $this->pdoBindParam($name, $param->getValue(), $this->toPdoType($param), $param->getSize() ?: 0);
-                $param->setBinded();
+                $param->setBound();
             } else {
                 $this->pdoBindParam($name, $param, $this->toPdoType($param));
             }
@@ -74,7 +74,7 @@ class Statement implements \VV\Db\Driver\Statement
                 throw new ConnectionError();
             }
 
-            throw new SqlExecutionError(null, null, $e);
+            throw new SqlExecutionError(previous: $e);
         }
 
         $insertedId = $this->hasInsertedId ? $this->stmt->fetch()['_insertedid'] : null;
@@ -102,6 +102,7 @@ class Statement implements \VV\Db\Driver\Statement
     {
         if ($value instanceof \Generator) {
             $strvalue = '';
+            /** @noinspection PhpLoopCanBeReplacedWithImplodeInspection */
             foreach ($value as $s) {
                 $strvalue .= $s;
             }
@@ -111,7 +112,8 @@ class Statement implements \VV\Db\Driver\Statement
 
         $res = $this->stmt->bindParam($name, $value, $type, $size);
         if (!$res) {
-            throw new \RuntimeException('Bind params error: ' . $name . ' ' . $value);
+            $strValue = is_scalar($value) ? (string)$value : '(' . gettype($value) . ')';
+            throw new \RuntimeException('Bind params error: ' . $name . ' ' . $strValue);
         }
     }
 
@@ -129,21 +131,19 @@ class Statement implements \VV\Db\Driver\Statement
         }
 
         if ($paramType) {
-            switch ($paramType) {
-                case Param::T_INT:
-                    return \PDO::PARAM_INT;
+            return match ($paramType) {
+                Param::T_INT => \PDO::PARAM_INT,
+                Param::T_BOOL => \PDO::PARAM_BOOL,
+                Param::T_FLOAT,
+                Param::T_STR,
+                Param::T_TEXT => \PDO::PARAM_STR,
+                Param::T_BLOB => \PDO::PARAM_LOB,
+                default => throw new \LogicException('Not supported yet'),
+            };
+        }
 
-                case Param::T_CHR:
-                case Param::T_TEXT:
-                    return \PDO::PARAM_STR;
-
-                case Param::T_BLOB:
-                    return \PDO::PARAM_LOB;
-
-                case Param::T_BIN:
-                    throw new \LogicException('Not supported yet');
-                // return \PDO::BIN;
-            }
+        if (is_bool($value)) {
+            return \PDO::PARAM_BOOL;
         }
 
         if (is_int($value)) {

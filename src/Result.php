@@ -35,11 +35,11 @@ class Result implements ResultInterface
     public function getIterator(int $flags): \Traversable
     {
         $pdoFlags = 0;
-        if ($fassoc = (bool)($flags & Db::FETCH_ASSOC)) {
+        if ($fetchAssoc = (bool)($flags & Db::FETCH_ASSOC)) {
             $pdoFlags = \PDO::FETCH_ASSOC;
         }
         if ($flags & Db::FETCH_NUM) {
-            $pdoFlags = $fassoc ? \PDO::FETCH_BOTH : \PDO::FETCH_NUM;
+            $pdoFlags = $fetchAssoc ? \PDO::FETCH_BOTH : \PDO::FETCH_NUM;
         }
 
         $this->stmt->setFetchMode($pdoFlags);

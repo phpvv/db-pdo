@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace VV\Db\Pdo;
 
 use VV\Db\Exceptions\ConnectionError;
+use VV\Db\Sql\Stringifiers\Factory as StringifiersFactory;
 
 /**
  * Class Driver
@@ -66,7 +67,7 @@ class Driver implements \VV\Db\Driver\Driver
         return new Connection($pdo);
     }
 
-    public function getSqlStringifiersFactory(): ?\VV\Db\Sql\Stringifiers\Factory
+    public function getSqlStringifiersFactory(): ?StringifiersFactory
     {
         return null;
     }

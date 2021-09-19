@@ -4,26 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "025f77f6edb6332778ad54a245f4240b",
+    "content-hash": "afcee7e3d6280572ed1ff9e878374f0d",
     "packages": [
         {
             "name": "phpvv/db",
-            "version": "0.3.0-beta.2",
+            "version": "0.3.0-beta.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpvv/db.git",
-                "reference": "7d25044c6bb2d142614849a2160d128451a901d9"
+                "reference": "3ff0893dec1cf39f15fec5c6b0a3ad8645267116"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpvv/db/zipball/7d25044c6bb2d142614849a2160d128451a901d9",
-                "reference": "7d25044c6bb2d142614849a2160d128451a901d9",
+                "url": "https://api.github.com/repos/phpvv/db/zipball/3ff0893dec1cf39f15fec5c6b0a3ad8645267116",
+                "reference": "3ff0893dec1cf39f15fec5c6b0a3ad8645267116",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.0",
-                "phpvv/exception": "^0.2.1",
-                "phpvv/runtime": "^0.2.0"
+                "php": "^8.0"
             },
             "require-dev": {
                 "squizlabs/php_codesniffer": "^3.6"
@@ -65,103 +63,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpvv/db/issues",
-                "source": "https://github.com/phpvv/db/tree/0.3.0-beta.2"
+                "source": "https://github.com/phpvv/db/tree/0.3.0-beta.7"
             },
-            "time": "2021-07-20T21:00:45+00:00"
-        },
-        {
-            "name": "phpvv/exception",
-            "version": "0.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpvv/exception.git",
-                "reference": "30889e5890be3c69070ef8910353975a0e44e7a7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpvv/exception/zipball/30889e5890be3c69070ef8910353975a0e44e7a7",
-                "reference": "30889e5890be3c69070ef8910353975a0e44e7a7",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0",
-                "phpvv/runtime": "0.2.0"
-            },
-            "require-dev": {
-                "jetbrains/phpstorm-attributes": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Exception.php"
-                ],
-                "psr-4": {
-                    "VV\\Exception\\": "Exception/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Volodymyr Sarnytskyi",
-                    "email": "v00v4n@gmail.com"
-                }
-            ],
-            "description": "VV Exception",
-            "support": {
-                "issues": "https://github.com/phpvv/exception/issues",
-                "source": "https://github.com/phpvv/exception/tree/0.2.1"
-            },
-            "time": "2021-04-26T12:37:48+00:00"
-        },
-        {
-            "name": "phpvv/runtime",
-            "version": "0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpvv/runtime.git",
-                "reference": "d407151fd0b19ca09759ab30d8c80304911a5080"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpvv/runtime/zipball/d407151fd0b19ca09759ab30d8c80304911a5080",
-                "reference": "d407151fd0b19ca09759ab30d8c80304911a5080",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "jetbrains/phpstorm-attributes": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "const.php",
-                    "func.php"
-                ],
-                "classmap": [
-                    "VV.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Volodymyr Sarnytskyi",
-                    "email": "v00v4n@gmail.com"
-                }
-            ],
-            "description": "VV Runtime",
-            "support": {
-                "issues": "https://github.com/phpvv/runtime/issues",
-                "source": "https://github.com/phpvv/runtime/tree/v0.2.0"
-            },
-            "time": "2021-03-28T07:57:57+00:00"
+            "time": "2021-09-19T12:11:16+00:00"
         }
     ],
     "packages-dev": [

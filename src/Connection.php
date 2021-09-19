@@ -43,7 +43,7 @@ class Connection implements \VV\Db\Driver\Connection
         try {
             $stmt = $this->pdo->prepare($query->getString());
         } catch (\PDOException $e) {
-            throw new SqlSyntaxError(null, null, $e);
+            throw new SqlSyntaxError(previous: $e);
         }
 
         return new Statement($stmt);
