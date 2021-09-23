@@ -59,7 +59,7 @@ class Driver implements \VV\Db\Driver\Driver
             $pdo = new \PDO($dsn, $user, $passwd);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
-            throw new ConnectionError(null, null, $e);
+            throw new ConnectionError(previous: $e);
         }
 
         $this->onPdoConnect($pdo);
