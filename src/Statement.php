@@ -77,7 +77,13 @@ class Statement implements \VV\Db\Driver\Statement
             throw new SqlExecutionError(previous: $e);
         }
 
-        $insertedId = $this->hasInsertedId ? $this->stmt->fetch()['_insertedid'] : null;
+        $insertedId = null;
+        if ($this->hasInsertedId) {
+            $row = $this->stmt->fetch(\PDO::FETCH_ASSOC);
+            if ($row) {
+                $insertedId = $row['_insertedid'];
+            }
+        }
 
         return new Result($this->stmt, $insertedId);
     }
